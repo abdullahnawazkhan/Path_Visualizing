@@ -12,7 +12,7 @@ def get_heuristic(curr_coordinates, goal_coordinates):
 	return result # for getting an under-estimate we round down
 
 def a_star_algorithm(grid, start_node, stop_node):
-	grid.set_goal(grid, stop_node)
+	main.set_goal(grid, stop_node)
 
 	open_list = [start_node] # nodes evaluated but not expanded on
 	closed_list = [] # nodes expanded on
@@ -52,16 +52,16 @@ def a_star_algorithm(grid, start_node, stop_node):
 				node = n_node
 				path.append(node)
 			path.reverse()
-			grid.draw_path(grid, path)
+			main.draw_path(grid, path)
 			break
 
 		else:
-			grid.change_explored(grid, curr_node)
-			grid.draw(grid)
+			main.change_explored(grid, curr_node)
+			main.draw(grid)
 			open_list.remove(curr_node)
 			closed_list.append(curr_node)
-			for neighbour in grid.get_neighbours(grid, curr_node):
-				if grid.check_barrier(grid, neighbour) == True:
+			for neighbour in main.get_neighbours(grid, curr_node):
+				if main.check_barrier(grid, neighbour) == True:
 					continue
 				if neighbour in closed_list:
 					continue # will skip the current iteration
@@ -76,6 +76,6 @@ def a_star_algorithm(grid, start_node, stop_node):
 				parents[str(neighbour)] = str(curr_node)
 
 				if neighbour not in open_list and neighbour not in closed_list:
-					grid.change_fringe(grid, neighbour)
+					main.change_fringe(grid, neighbour)
 					open_list.append(neighbour)
-			grid.draw(grid)
+			main.draw(grid)

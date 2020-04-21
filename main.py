@@ -119,8 +119,6 @@ if __name__ == "__main__":
 
 	grid = [["-"] * global_y for i in range(global_x)]
 
-	set_goal(grid, end_coordinates)
-
 	global_x -= 1
 	global_y -= 1
 
@@ -136,6 +134,15 @@ if __name__ == "__main__":
 		end_coordinates[0] = int(end_coordinates[0])
 		end_coordinates[1] = int(end_coordinates[1])
 
-		set_goal()
+		set_goal(grid, end_coordinates)
 
 	add_barriers(grid)
+
+	if algorithm == 1:
+		a_star.a_star_algorithm(grid, start_coordinates, end_coordinates)
+	elif algorithm == 2:
+		bfs.BFS(grid, start_coordinates)
+	elif algorithm == 3:
+		dfs.DFS(grid, start_coordinates)
+	else:
+		bfs_shortest_path.shortest_path_BFS(grid, start_coordinates, end_coordinates)

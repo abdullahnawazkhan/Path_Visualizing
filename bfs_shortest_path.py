@@ -1,7 +1,7 @@
 import main
 
 def shortest_path_BFS(grid, start_coordinates, end_coordinates):
-	grid.set_goal(grid, end_coordinates)
+	main.set_goal(grid, end_coordinates)
 	# To find the shortest path
 	# We will get every single path from [start_node] to Every Node
 	# Due to the nature of BFS, when we reach [end_node]
@@ -16,15 +16,15 @@ def shortest_path_BFS(grid, start_coordinates, end_coordinates):
 		curr_path = paths.pop(0) # dequeuing from queue
 		curr_node = curr_path[-1] # getting last node to continue the search
 		if curr_node not in visited:
-			grid.change_explored(grid, curr_node)
-			grid.draw(grid)
-			for node in grid.get_neighbours(grid, curr_node):
+			main.change_explored(grid, curr_node)
+			main.draw(grid)
+			for node in main.get_neighbours(grid, curr_node):
 				new_path = curr_path.copy() # new path will be continuation of curr path
 				new_path.append(node)
-				grid.change_explored(grid, node)
-				grid.draw(grid)
+				main.change_explored(grid, node)
+				main.draw(grid)
 				if node == end_coordinates:
-					grid.draw_path(grid, new_path)
+					main.draw_path(grid, new_path)
 					print("\n\tDONE!!")
 					found = True
 					break
